@@ -139,6 +139,13 @@ cc_library {
             },
         },
 
+        android_riscv64: {
+            srcs: ["arch-riscv64/android_memset.c"],
+            sanitize: {
+                misc_undefined: ["integer"],
+            },
+        },
+
         android_x86: {
             srcs: [
                 "arch-x86/android_memset16.S",

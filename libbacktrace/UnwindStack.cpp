@@ -217,6 +217,9 @@ bool UnwindStackOffline::Unwind(size_t num_ignore_frames, void* ucontext) {
     case ARCH_X86_64:
       arch = unwindstack::ARCH_X86_64;
       break;
+    case ARCH_RISCV64:
+      arch = unwindstack::ARCH_RISCV64;
+      break;
     default:
       return false;
   }

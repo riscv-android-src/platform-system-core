@@ -172,6 +172,8 @@ Result<Success> SetMmapRndBitsAction(const BuiltinArguments&) {
 #elif defined(__mips__) || defined(__mips64__)
     // TODO: add mips support b/27788820
     return Success();
+#elif __riscv_xlen == 64
+    return Success();
 #else
     LOG(ERROR) << "Unknown architecture";
 #endif

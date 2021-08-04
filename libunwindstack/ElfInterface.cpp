@@ -194,6 +194,22 @@ uint64_t ElfInterface::GetLoadBias(Memory* memory) {
   return 0;
 }
 
+uint64_t ElfInterface::GetVirtAddrFromOffset(uint64_t addr) {
+
+  if (this && !pt_loads_.empty()) {
+    for (auto& entry : pt_loads_) {
+      uint64_t start = entry.second.offset;
+      uint64_t end = start + entry.second.table_size;
+      if (addr >= start && addr < end) {
+	return addr + entry.second.table_offset - entry.second.offset;
+      }
+    }
+    return addr;
+  }
+  return addr;
+}
+
+
 template <typename EhdrType, typename PhdrType>
 void ElfInterface::ReadProgramHeaders(const EhdrType& ehdr, uint64_t* load_bias) {
   uint64_t offset = ehdr.e_phoff;

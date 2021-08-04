@@ -492,6 +492,13 @@ class LibraryNamespaces {
     // For now we rely on CTS test to catch things like this but
     // it should probably be addressed in the future.
     for (const auto& soname : sonames) {
+	//FIXME: T-HEAD bypass missing librarys
+        if( (strcmp(soname.c_str(), "libcamera2ndk.so") == 0)  ||
+             (strcmp(soname.c_str(), "libneuralnetworks.so") == 0)  ||
+             (strcmp(soname.c_str(), "libOpenMAXAL.so") == 0) ||
+             (strcmp(soname.c_str(), "libRS.so") == 0) ) {
+                 continue;
+         }
       LOG_ALWAYS_FATAL_IF(dlopen(soname.c_str(), RTLD_NOW | RTLD_NODELETE) == nullptr,
                           "Error preloading public library %s: %s", soname.c_str(), dlerror());
     }

@@ -34,6 +34,7 @@
 #include <unwindstack/RegsX86_64.h>
 #include <unwindstack/RegsMips.h>
 #include <unwindstack/RegsMips64.h>
+#include <unwindstack/RegsRiscv64.h>
 #include <unwindstack/Unwinder.h>
 
 #include "ElfFake.h"
@@ -1378,6 +1379,11 @@ TEST_F(UnwinderTest, format_frame_by_arch) {
   arm64->set_sp(0x10000);
   reg_list.push_back(arm64);
 
+  RegsRiscv64* riscv64 = new RegsRiscv64;
+  riscv64->set_pc(0x2300);
+  riscv64->set_sp(0x10000);
+  reg_list.push_back(riscv64);
+
   RegsX86* x86 = new RegsX86;
   x86->set_pc(0x2300);
   x86->set_sp(0x10000);
@@ -1415,6 +1421,7 @@ TEST_F(UnwinderTest, format_frame_by_arch) {
       case ARCH_ARM64:
       case ARCH_X86_64:
       case ARCH_MIPS64:
+      case ARCH_RISCV64:
         expected = "  #00 pc 0000000000001300  /system/fake/libc.so (Frame0+10)";
         break;
       default:

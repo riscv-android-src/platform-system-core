@@ -102,7 +102,11 @@ std::string Elf::GetSoname() {
 }
 
 uint64_t Elf::GetRelPc(uint64_t pc, const MapInfo* map_info) {
+#if defined (__riscv)
+  return interface_->GetVirtAddrFromOffset(pc - map_info->start + load_bias_ + map_info->elf_offset);
+#else
   return pc - map_info->start + load_bias_ + map_info->elf_offset;
+#endif
 }
 
 bool Elf::GetFunctionName(uint64_t addr, std::string* name, uint64_t* func_offset) {
@@ -287,9 +291,11 @@ ElfInterface* Elf::CreateInterfaceFromMemory(Memory* memory) {
       arch_ = ARCH_X86_64;
     } else if (e_machine == EM_MIPS) {
       arch_ = ARCH_MIPS64;
+    } else if (e_machine == EM_RISCV64) {
+      arch_ = ARCH_RISCV64;
     } else {
       // Unsupported.
-      ALOGI("64 bit elf that is neither aarch64 nor x86_64 nor mips64: e_machine = %d\n",
+      ALOGI("64 bit elf that is none of aarch64|x86_64|mips64|riscv64: e_machine = %d\n",
             e_machine);
       return nullptr;
     }

@@ -80,7 +80,18 @@ on init
     chmod 0664 /dev/stune/top-app/tasks
     chmod 0664 /dev/stune/rt/tasks
 
-    # Create blkio group and apply initial settings.
+# Display socket
+    mkdir /dev/socket/pdx 0755 system system
+    mkdir /dev/socket/pdx/system 0755 system system
+    mkdir /dev/socket/pdx/system/buffer_hub 0755 system system
+    mkdir /dev/socket/pdx/system/performance 0755 system system
+    mkdir /dev/socket/pdx/system/vr 0755 system system
+    mkdir /dev/socket/pdx/system/vr/display 0755 system system
+    mkdir /dev/socket/pdx/system/vr/pose 0755 system system
+    mkdir /dev/socket/pdx/system/vr/sensors 0755 system system
+
+
+# Create blkio group and apply initial settings.
     # This feature needs kernel to support it, and the
     # device's init.rc must actually set the correct values.
     mkdir /dev/blkio/background

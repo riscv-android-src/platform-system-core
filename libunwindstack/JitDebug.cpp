@@ -157,6 +157,7 @@ void JitDebug::ProcessArch() {
     case ARCH_ARM64:
     case ARCH_X86_64:
     case ARCH_MIPS64:
+    case ARCH_RISCV64:
       read_descriptor_func_ = &JitDebug::ReadDescriptor64;
       read_entry_func_ = &JitDebug::ReadEntry64;
       break;

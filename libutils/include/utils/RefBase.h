@@ -630,7 +630,7 @@ void wp<T>::clear()
 {
     if (m_ptr) {
         m_refs->decWeak(this);
-        m_refs = 0;
+        m_refs = nullptr;
         m_ptr = 0;
     }
 }

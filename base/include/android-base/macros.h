@@ -147,4 +147,6 @@ void UNUSED(const T&...) {
 #define ABI_STRING "mips"
 #elif defined(__mips__) && defined(__LP64__)
 #define ABI_STRING "mips64"
+#elif defined(__riscv) && (__riscv_xlen == 64)
+#define ABI_STRING "riscv64"
 #endif

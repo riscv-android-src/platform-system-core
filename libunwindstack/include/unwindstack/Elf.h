@@ -32,6 +32,10 @@
 #define EM_AARCH64 183
 #endif
 
+#if !defined(EM_RISCV64)
+#define EM_RISCV64 243
+#endif
+
 namespace unwindstack {
 
 // Forward declaration.
@@ -46,6 +50,7 @@ enum ArchEnum : uint8_t {
   ARCH_X86_64,
   ARCH_MIPS,
   ARCH_MIPS64,
+  ARCH_RISCV64,
 };
 
 class Elf {
