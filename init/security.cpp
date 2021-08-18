@@ -109,6 +109,11 @@ Result<void> SetMmapRndBitsAction(const BuiltinArguments&) {
     if (SetMmapRndBitsMin(33, 24, false) && SetMmapRndBitsMin(16, 16, true)) {
         return {};
     }
+#elif defined(__riscv) && (__riscv_xlen == 64)
+    // todo: here just copy the arm64 setting
+    if (SetMmapRndBitsMin(33, 24, false) && SetMmapRndBitsMin(16, 16, true)) {
+        return {};
+    }
 #elif defined(__x86_64__)
     // x86_64 supports 28 - 32 bits
     if (SetMmapRndBitsMin(32, 32, false) && SetMmapRndBitsMin(16, 16, true)) {
