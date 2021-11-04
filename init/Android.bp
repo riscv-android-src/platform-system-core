@@ -91,9 +91,9 @@ init_host_sources = [
 
 cc_defaults {
     name: "init_defaults",
-    sanitize: {
-        misc_undefined: ["signed-integer-overflow"],
-    },
+    //sanitize: {
+    //    misc_undefined: ["signed-integer-overflow"],
+    //},
     cflags: [
         "-DLOG_UEVENTS=0",
         "-Wall",
@@ -362,10 +362,10 @@ cc_binary {
         },
     },
 
-    sanitize: {
-        misc_undefined: ["signed-integer-overflow"],
-        hwaddress: false,
-    },
+    //sanitize: {
+    //    misc_undefined: ["signed-integer-overflow"],
+    //    hwaddress: false,
+    //},
 }
 
 // Tests
