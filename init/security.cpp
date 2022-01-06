@@ -110,8 +110,8 @@ Result<void> SetMmapRndBitsAction(const BuiltinArguments&) {
         return {};
     }
 #elif defined(__riscv) && (__riscv_xlen == 64)
-    // todo: here just copy the arm64 setting
-    if (SetMmapRndBitsMin(33, 24, false) && SetMmapRndBitsMin(16, 16, true)) {
+    // TODO: RISC-V Update rnd bits when memory model change
+    if (SetMmapRndBitsMin(24, 18, false)) {
         return {};
     }
 #elif defined(__x86_64__)
